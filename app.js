@@ -207,13 +207,15 @@ function clickHandler() {
 
         setTimeout (() => {
             if (checkIsPalindrome) {
-                outputMessage.innerHTML = `Yay! your birthday is a <span>Palindrome</span> 🤘`;
+                outputMessage.innerHTML = `<p class="palindrome">Yay! your birthday is a <span>Palindrome</span> 🤘</p>`;
                 gif.src = './Images/palindrome.gif';
                 gif.alt = 'Andy from "The Office" says "I Knew It!"';
             } else {
                 let [ctr1, nextDate] = getNextPalindromeDate(date);
                 let [ctr2, previousDate] = getPreviousPalindromeDate(date);
-                outputMessage.innerHTML = `No! your birthday is <span>Not</span> a Palindrome.<br>The Next Palindrome date is <span>${nextDate.day}-${nextDate.month}-${nextDate.year}</span>, you missed by <span>${ctr1}</span> days.<br>
+
+                outputMessage.innerHTML = `<p class="palindrome">No! your birthday is <span>Not</span> a Palindrome.</p>
+                The Next Palindrome date is <span>${nextDate.day}-${nextDate.month}-${nextDate.year}</span>, you missed by <span>${ctr1}</span> days.<br>
                 The Previous Palindrome date was <span>${previousDate.day}-${previousDate.month}-${previousDate.year}</span>, you missed by <span>${ctr2}</span> days.`;
                 gif.src = './Images/not-palindrome.webp';
                 gif.alt = 'Jim from "The Office" mouthing "So close"';
