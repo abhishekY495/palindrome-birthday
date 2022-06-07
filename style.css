@@ -3,6 +3,7 @@
 :root {
     --primary-color: #574ef7;
     --secondary-color: #1b1b1b;
+    --span-color: #f7f759;
 }
 
 body {
@@ -17,7 +18,7 @@ body {
     height: 100vh;
 }
 
-h1 {
+h1,p {
     padding: 0;
     margin: 0;
 }
@@ -26,14 +27,59 @@ a {
     color: white;
 }
 
+.heading {
+    background-color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+}
+.heading a {
+    font-size: 2.6rem;
+}
+
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
 }
 
+main label {
+    font-size: 1.8rem;
+}
+main input {
+    font-size: 1.3rem;
+    padding: 0.2rem 0.8rem;
+    border: none;
+    border-radius: 0.2rem;
+}
+
+.check-btn {
+    font-size: 1.4rem;
+    padding: 0.1rem 1rem;
+    margin: 1rem;
+}
+
+.divider {
+    width: 80%;
+    padding: 1.5px;
+    background-color: rgb(39, 39, 39);
+}
+
+#output-message {
+    font-size: 1.25rem;
+    margin: 0.5rem;
+}
+#output-message span {
+    font-weight: 500;
+    color: var(--span-color);
+}
+
+
+.gif {
+    width: 18rem;
+    border: none;
+    border-radius: 0.2rem;
+}
 
 footer {
     display: flex;
