@@ -1,12 +1,17 @@
 const dateOfBirth = document.querySelector('#date-of-birth');
 const checkBtn = document.querySelector('.check-btn');
 const outputMessage = document.querySelector('#output-message');
-const gif = document.querySelector('.gif');
+
+const calulatingGif = document.querySelector('.calculating-gif');
+const palindromeGif = document.querySelector('.palindrome-gif');
+const notPalindromeGif = document.querySelector('.not-palindrome-gif');
 
 const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 outputMessage.style.display = 'none';
-gif.style.display = 'none';
+calulatingGif.style.display = 'none';
+palindromeGif.style.display = 'none';
+notPalindromeGif.style.display = 'none';
 
 checkBtn.addEventListener('click', clickHandler);
 
@@ -199,30 +204,39 @@ function clickHandler() {
     
         let checkIsPalindrome = checkPalindromeForAllDateFormats(date);
         
+        palindromeGif.style.display = 'none';
+        notPalindromeGif.style.display = 'none';
         outputMessage.style.display = 'block';
         outputMessage.innerText = 'Calculating';
-        gif.src = './Images/calculating.gif';
-        gif.alt = 'A kid calculating meme';
-        gif.style.display = 'block';
+        calulatingGif.style.display = 'block';
 
         setTimeout (() => {
             if (checkIsPalindrome) {
-                outputMessage.innerHTML = `<p class="palindrome">Yay! your birthday is a <span>Palindrome</span> 🤘</p>`;
-                gif.src = './Images/palindrome.gif';
-                gif.alt = 'Andy from "The Office" says "I Knew It!"';
+                palindromeMsgOutput();
             } else {
                 let [ctr1, nextDate] = getNextPalindromeDate(date);
                 let [ctr2, previousDate] = getPreviousPalindromeDate(date);
-
-                outputMessage.innerHTML = `<p class="palindrome">No! your birthday is <span>Not</span> a Palindrome.</p>
-                The Next Palindrome date is <span>${nextDate.day}-${nextDate.month}-${nextDate.year}</span>, you missed by <span>${ctr1}</span> days.<br>
-                The Previous Palindrome date was <span>${previousDate.day}-${previousDate.month}-${previousDate.year}</span>, you missed by <span>${ctr2}</span> days.`;
-                gif.src = './Images/not-palindrome.webp';
-                gif.alt = 'Jim from "The Office" mouthing "So close"';
+                notPalindromeMsgOutput(ctr1, nextDate, ctr2, previousDate);
             }
         }, 2500);
     } else {
         outputMessage.style.display = 'block';
         outputMessage.innerHTML = `Select Date.`;
     }
+}
+
+function palindromeMsgOutput() {
+    outputMessage.innerHTML = `<p class="palindrome">Yay! your birthday is a <span>Palindrome</span> 🤘</p>`;
+    calulatingGif.style.display = 'none';
+    notPalindromeGif.style.display = 'none';
+    palindromeGif.style.display= 'block';
+}
+
+function notPalindromeMsgOutput(ctr1, nextDate, ctr2, previousDate) {
+    outputMessage.innerHTML = `<p class="palindrome">No! your birthday is <span>Not</span> a Palindrome.</p>
+    The Next Palindrome date is <span>${nextDate.day}-${nextDate.month}-${nextDate.year}</span>, you missed by <span>${ctr1}</span> days.<br>
+    The Previous Palindrome date was <span>${previousDate.day}-${previousDate.month}-${previousDate.year}</span>, you missed by <span>${ctr2}</span> days.`;
+    calulatingGif.style.display = 'none';
+    palindromeGif.style.display= 'none';
+    notPalindromeGif.style.display = 'block';
 }
